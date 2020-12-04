@@ -1,11 +1,16 @@
-import logo from './logo.svg';
 import React from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 
 const App = () => {
   return (
-    <div>
-      hi
-    </div>
+    <Router>
+    <Switch>
+      <Route path="/homepage" component={HomePage}/>
+      <Route path='/' component={LoginPage}/>
+    </Switch>
+    </Router>
   )
 }
 

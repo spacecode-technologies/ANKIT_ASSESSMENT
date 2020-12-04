@@ -1,17 +1,9 @@
 import { makeStyles } from "@material-ui/core";
-import logo from './images/logo.png'
 
 export const useLoginPageStyles = makeStyles({
-  loginCard: {
-    maxWidth: 348,
-    padding: "16px 40px",
-    marginBottom: 10,
-    display: "grid",
-    alignItems: "center",
-    gridTemplateColumns: "2fr 1fr"
-  },
+
   card: {
-    maxWidth: 348,
+    maxWidth: 380,
     padding: "16px 40px",
     marginBottom: 10
   },
@@ -20,22 +12,25 @@ export const useLoginPageStyles = makeStyles({
     placeItems: "center",
     height: "100vh"
   },
-  cardHeader: {
-    backgroundImage: `url(${logo})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "-98px 0",
-    height: 51,
-    width: 175,
-    margin: "22px auto 12px"
-  },
-  textField: {
-    marginBottom: 6
-  },
+
+  
   button: {
-    margin: "8px 0px"
+    marginLeft: "80px" ,
+    marginTop: "20px",
+    height: 40,
+    width: 100,
+    borderRadius: "15px"
+    // padding:"20px" 
   },
   typography: {
-    margin: "10px 0px"
+    margin: "10px 0px",
+    fontSize: 10,
+    color: "#878787"
+
   },
+  forgotPassword: {
+      textDecoration: "none",
+      color: "#9C1C75",
+  }
   
 });

@@ -1,23 +1,32 @@
 import React, {useState} from 'react'
 import { useLoginPageStyles } from "../style";
-import { Typography, FormControl, Grid, InputAdornment, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Card, CardHeader, TextField, Button } from '@material-ui/core';
+import { Typography,Grid, InputAdornment, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Card, TextField, Button } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import { ValidatorForm, TextValidator    } from "react-material-ui-form-validator";
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import logo from '../images/logo.png'
-import { Link, useHistory } from 'react-router-dom';
 
 const LoginPage = () => {
     const classes = useLoginPageStyles();
     const history = useHistory();
-     const [showPassword, setPasswordVisibility] = useState(false);
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     
-     function togglePasswordVisibility() {
+    const [showPassword, setPasswordVisibility] = useState(false);
+
+    
+    function togglePasswordVisibility() {
     setPasswordVisibility((prev) => !prev);
-
-
+    }
+    function handleEmailChange(e){
+        setEmail(e.target.value)
+    }
+    function handlePasswordChange(e){
+        setPassword(e.target.value)
     }
     function handleSubmit(){
       history.push('/homepage')
@@ -29,24 +38,32 @@ const LoginPage = () => {
                 <Card className={classes.card}>
                     <img src={logo} alt={logo} style={{ width: "250px" }} />
                     
-                        <form onSubmit={handleSubmit}>
+                        <ValidatorForm onSubmit={handleSubmit}>
                             
-                            <Grid container spacing={2} alignItems="flex-end">
+                            <Grid container spacing={1} alignItems="flex-end">
                                 <Grid item>
                                     <EmailIcon />
                                 </Grid>
                                  <Grid item>
-                                    <TextField id="input-with-icon-grid" label="Email" required />
+                                    <TextValidator 
+                                        id="input-with-icon-grid" 
+                                        label="Email"  
+                                        value={email}
+                                        className={classes.textField}
+                                        autoComplete="off"
+                                        onChange={handleEmailChange}
+                                        validators={["required"]}
+                                        errorMessages={["Email is required"]}
+                                        />
                                 </Grid>
                             </Grid>
-                            <Grid container spacing={2} alignItems="flex-end">
+                            <Grid container spacing={1} alignItems="flex-end">
                                 <Grid item>
                                     <LockIcon />
                                 </Grid>
                                  <Grid item>
-                                    <TextField
+                                    <TextValidator
                                         label="Password"  
-                                        required
                                         InputProps={{
                                             endAdornment: 
                                                 <InputAdornment>
@@ -56,11 +73,13 @@ const LoginPage = () => {
                                                 </InputAdornment>
                                                 }}
                                         type={showPassword ? 'text' : 'password'}
-                                        fullWidth
-                                        varient="filled"
                                         margin="dense"
+                                        autoComplete="off"
                                         className={classes.textField}
-                                        autoComplete="current-password"
+                                        onChange={handlePasswordChange}
+                                        value={password}
+                                        validators={["required"]}
+                                        errorMessages={["Password is required"]}
                                     />
                                 </Grid>
                             </Grid>
@@ -87,7 +106,7 @@ const LoginPage = () => {
                             >
                                 Login
                             </Button>
-                        </form>
+                        </ValidatorForm>
                         <Typography variant="caption" display="block" gutterBottom className={classes.typography}>Copyright © Spacecode SAS. 2020 All rights reserved.</Typography>
                 </Card>
             </article>

@@ -6,7 +6,8 @@ export const useLoginPageStyles = makeStyles({
   card: {
     maxWidth: 380,
     padding: "16px 40px",
-    marginBottom: 10
+    marginBottom: 10,
+    boxShadow: '0px 0px 21px 2px rgba(79,79,79,0.69)'
   },
   section: {
     display: "grid",
@@ -18,13 +19,13 @@ export const useLoginPageStyles = makeStyles({
   button: {
     marginLeft: "80px" ,
     marginTop: "20px",
+    marginBottom: "2.5rem",
     height: 40,
     width: 100,
     borderRadius: "15px"
-    // padding:"20px" 
   },
   typography: {
-    margin: "10px 0px",
+    marginTop: '2rem',
     fontSize: 10,
     color: "#878787"
 
@@ -32,6 +33,9 @@ export const useLoginPageStyles = makeStyles({
   forgotPassword: {
       textDecoration: "none",
       color: "#9C1C75",
+  }, 
+  textField: {
+      width: "250px"
   }
   
 });

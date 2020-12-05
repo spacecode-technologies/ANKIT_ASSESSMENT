@@ -77,8 +77,8 @@ const HomePage = () => {
                         }),
                      }}
                 >
-                    <div className={classes.toolbar} style={{backgroundColor: "#880e4f" }}>
-                            <img src={logo2} alt="logo" style={{width: '80%', textAlign: 'center'}} onClick={handleDrawerClose}/>
+                    <div className={classes.toolbar} style={{backgroundColor: "#F6F6F6" }}>
+                            <img src={logo2} alt="logo" style={{width: '80%',marginRight: "1.5rem"}} onClick={handleDrawerClose}/>
                     </div>
                     <Divider />
                     <List>
@@ -122,6 +122,7 @@ const HomePage = () => {
                                 <ListItemText primary={"Report"} />
                             </ListItem>
                         </Link>
+                        
                     </List>
                 </Drawer>
           </div>

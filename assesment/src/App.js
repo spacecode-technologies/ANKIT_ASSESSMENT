@@ -1,17 +1,19 @@
-import React from 'react'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Sidebar from './components/Sidebar';
+
+import LoginPage from './pages/LoginPage';
 
 const App = () => {
   return (
-    <Router>
-    <Switch>
-      <Route path="/homepage" component={HomePage}/>
-      <Route path='/' component={LoginPage}/>
-    </Switch>
-    </Router>
-  )
-}
+    <>
+      <Sidebar />
+      <Switch>
+        <Route exact path='/' component={LoginPage} />
+      </Switch>
+    </>
+  );
+};
 
-export default App
+export default App;

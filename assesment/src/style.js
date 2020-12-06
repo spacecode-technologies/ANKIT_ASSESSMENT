@@ -1,53 +1,47 @@
-import { makeStyles } from "@material-ui/core";
-
+import { makeStyles } from '@material-ui/core';
 
 export const useLoginPageStyles = makeStyles({
-
   card: {
     maxWidth: 380,
-    padding: "16px 40px",
+    padding: '16px 40px',
     marginBottom: 10,
-    boxShadow: '0px 0px 21px 2px rgba(79,79,79,0.69)'
+    boxShadow: '0px 0px 21px 2px rgba(79,79,79,0.69)',
   },
   section: {
-    display: "grid",
-    placeItems: "center",
-    height: "100vh"
+    display: 'grid',
+    placeItems: 'center',
+    height: '100vh',
   },
 
-  
   button: {
-    marginLeft: "80px" ,
-    marginTop: "20px",
-    marginBottom: "2.5rem",
+    marginLeft: '80px',
+    marginTop: '20px',
+    marginBottom: '2.5rem',
     height: 40,
     width: 100,
-    borderRadius: "15px"
+    borderRadius: '15px',
   },
   typography: {
     marginTop: '2rem',
     fontSize: 10,
-    color: "#878787"
-
+    color: '#878787',
   },
   forgotPassword: {
-      textDecoration: "none",
-      color: "#9C1C75",
-  }, 
+    textDecoration: 'none',
+    color: '#9C1C75',
+  },
   textField: {
-      width: "250px"
-  }
-  
+    width: '250px',
+  },
 });
 const drawerWidth = 240;
-export const useHomePageStyles = makeStyles((theme) => ({
-    
-    root: {
-        display: "flex"
-    },
-    appBar: {
+export const useSidebarStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -103,15 +97,37 @@ export const useHomePageStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   typography: {
-    color: "#979797",
-    fontWeight: 600,
-
+    color: '#000',
+    fontWeight: 500,
   },
   link: {
-      textDecoration: "none",
-      color: "#000"
+    textDecoration: 'none',
+    color: '#000',
   },
   menuIcon: {
-      color: "#000"
-  }
-}))
+    color: '#000',
+  },
+  listItemSelected: {
+    '& span': {
+      fontWeight: '600 !important',
+    },
+  },
+  listItemButton: {
+    paddingTop: '10px !important',
+    paddingBottom: '10px !important',
+  },
+}));
+
+export const useInventoryPageStyles = makeStyles({
+  input: {
+    height: 28,
+    fontSize: '14px !important',
+    background: 'rgba(var(--b3f,250,250,250),1)',
+    border: 'solid 1px rgba(var(--b6a,219,219,219),1)',
+    borderRadius: 3,
+    color: 'rgba(var(--i1d,38,38,38),1)',
+    outline: 0,
+    padding: '3px 3px 3px 26px',
+    zIndex: 2,
+  },
+});

@@ -5,7 +5,7 @@ import { useInventoryPageStyles } from '../style';
 
 import Table from '../components/Table'
 
-const InventoryPage = () => {
+const InventoryView = () => {
   const classes = useInventoryPageStyles();
   return (
     <>
@@ -33,4 +33,4 @@ const InventoryPage = () => {
   );
 };
 
-export default InventoryPage;
+export default InventoryView;

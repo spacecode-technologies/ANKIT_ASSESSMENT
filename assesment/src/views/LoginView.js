@@ -8,19 +8,22 @@ import {
   Checkbox,
 } from '@material-ui/core';
 import { Card, Button } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import logo from '../images/logo.png';
+import { useUserDispatch, loginUser } from '../context/UserContext';
 
-const LoginPage = () => {
+const LoginView = () => {
   const classes = useLoginPageStyles();
-  const history = useHistory();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const userDispatch = useUserDispatch();
+  const navigate = useNavigate();
+
+  const [username, setEmail] = useState('32264841');
+  const [password, setPassword] = useState('admin');
 
   const [showPassword, setPasswordVisibility] = useState(false);
 
@@ -34,7 +37,7 @@ const LoginPage = () => {
     setPassword(e.target.value);
   }
   function handleSubmit() {
-    history.push('/dashboard');
+    loginUser(userDispatch, username, password, navigate);
   }
   return (
     <>
@@ -52,7 +55,7 @@ const LoginPage = () => {
                   <TextValidator
                     id='input-with-icon-grid'
                     label='Email'
-                    value={email}
+                    value={username}
                     className={classes.textField}
                     autoComplete='off'
                     onChange={handleEmailChange}
@@ -127,4 +130,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LoginView;

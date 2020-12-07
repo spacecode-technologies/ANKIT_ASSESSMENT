@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Route, useHistory, Switch, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,15 +20,10 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 
 import { useSidebarStyles } from '../style';
 import logo2 from '../images/logo2.png';
-import DashboardPage from '../pages/DashboardPage';
-import InventoryPage from '../pages/InventoryPage';
-import TransactionsPage from '../pages/TransactionsPage';
-import CustomersPage from '../pages/CustomersPage';
-import ReportsPage from '../pages/ReportsPage';
 
-const Sidebar = () => {
+const DashboardLayout = () => {
   const classes = useSidebarStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const [path, setPath] = React.useState('');
@@ -47,7 +42,7 @@ const Sidebar = () => {
       icon: <DashboardIcon />,
       path: '/dashboard',
       onClick: () => {
-        history.push('/dashboard');
+        navigate('/dashboard');
         setTitle('Dashboard');
       },
     },
@@ -56,7 +51,7 @@ const Sidebar = () => {
       icon: <LineStyleIcon />,
       path: '/inventory',
       onClick: () => {
-        history.push('/inventory');
+        navigate('/inventory');
         setTitle('Inventory');
       },
     },
@@ -65,7 +60,7 @@ const Sidebar = () => {
       icon: <ReceiptIcon />,
       path: '/transactions',
       onClick: () => {
-        history.push('/transactions');
+        navigate('/transactions');
         setTitle('Transactions');
       },
     },
@@ -74,7 +69,7 @@ const Sidebar = () => {
       icon: <PeopleIcon />,
       path: '/customers',
       onClick: () => {
-        history.push('/customers');
+        navigate('/customers');
         setTitle('Customers');
       },
     },
@@ -83,7 +78,7 @@ const Sidebar = () => {
       icon: <BarChartIcon />,
       path: '/reports',
       onClick: () => {
-        history.push('/reports');
+        navigate('/reports');
         setTitle('Reports');
       },
     },
@@ -159,13 +154,7 @@ const Sidebar = () => {
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Switch>
-            <Route path='/dashboard'  component={DashboardPage} />
-            <Route path='/inventory' component={InventoryPage} />
-            <Route path='/transactions' component={TransactionsPage} />
-            <Route path='/customers' component={CustomersPage} />
-            <Route path='/reports' component={ReportsPage} />
-          </Switch>
+          <Outlet />
         </main>
       </div>
     </>
@@ -191,4 +180,4 @@ const MainToolbar = ({ title, handleDrawerOpen, open }) => {
     </Toolbar>
   );
 };
-export default Sidebar;
+export default DashboardLayout;

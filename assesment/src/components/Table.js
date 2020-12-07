@@ -31,7 +31,6 @@ const useStyles = makeStyles({
 export default function BasicTable() {
   const classes = useStyles();
   const rows = data.data_array;
-  console.log(rows);
 
   return (
     <TableContainer component={Paper}>
@@ -87,7 +86,7 @@ export default function BasicTable() {
               <TableCell align='left'>{row.sales_value}</TableCell>
               <TableCell align='left'>{row.sku_quantity}</TableCell>
               <TableCell align='left'>
-                <Moment format='L'>{row.createdAt}</Moment>
+                <Moment format='DD-MM-YYYY'>{row.createdAt}</Moment>
               </TableCell>
               <TableCell align='left'>
                 <VisibilityIcon className={classes.iconColor} />{' '}

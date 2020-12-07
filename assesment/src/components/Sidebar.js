@@ -22,7 +22,7 @@ import { useSidebarStyles } from '../style';
 import logo2 from '../images/logo2.png';
 import DashboardPage from '../pages/DashboardPage';
 import InventoryPage from '../pages/InventoryPage';
-import TransectionsPage from '../pages/TransectionsPage';
+import TransactionsPage from '../pages/TransactionsPage';
 import CustomersPage from '../pages/CustomersPage';
 import ReportsPage from '../pages/ReportsPage';
 
@@ -32,7 +32,7 @@ const Sidebar = () => {
   const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const [path, setPath] = React.useState('');
-  const [title, setTitle] = React.useState('Dash');
+  const [title, setTitle] = React.useState('Dashboard');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -61,12 +61,12 @@ const Sidebar = () => {
       },
     },
     {
-      name: 'Transections',
+      name: 'Transactions',
       icon: <ReceiptIcon />,
-      path: '/transections',
+      path: '/transactions',
       onClick: () => {
-        history.push('/transections');
-        setTitle('Transections');
+        history.push('/transactions');
+        setTitle('Transactions');
       },
     },
     {
@@ -98,7 +98,7 @@ const Sidebar = () => {
 
   const drawer = (
     <>
-      <div className={classes.toolbar} style={{ backgroundColor: '#F6F6F6' }}>
+      <div className={classes.toolbar} style={{ backgroundColor: '#9A1752' }}>
         <img
           src={logo2}
           alt='logo'
@@ -160,9 +160,9 @@ const Sidebar = () => {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
-            <Route path='/dashboard' exact component={DashboardPage} />
+            <Route path='/dashboard'  component={DashboardPage} />
             <Route path='/inventory' component={InventoryPage} />
-            <Route path='/transections' component={TransectionsPage} />
+            <Route path='/transactions' component={TransactionsPage} />
             <Route path='/customers' component={CustomersPage} />
             <Route path='/reports' component={ReportsPage} />
           </Switch>

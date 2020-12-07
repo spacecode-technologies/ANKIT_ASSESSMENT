@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 
@@ -10,7 +10,7 @@ const App = () => {
     <>
       <Sidebar />
       <Switch>
-        <Route exact path='/' component={LoginPage} />
+        <Route exact path='/login' component={LoginPage} />
       </Switch>
     </>
   );

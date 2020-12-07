@@ -120,14 +120,16 @@ export const useSidebarStyles = makeStyles((theme) => ({
 
 export const useInventoryPageStyles = makeStyles({
   input: {
-    height: 28,
+    height: 35,
     fontSize: '14px !important',
-    background: 'rgba(var(--b3f,250,250,250),1)',
-    border: 'solid 1px rgba(var(--b6a,219,219,219),1)',
-    borderRadius: 3,
+    border: 'solid 1.5px #000',
+    borderRadius: 6,
     color: 'rgba(var(--i1d,38,38,38),1)',
-    outline: 0,
-    padding: '3px 3px 3px 26px',
+    outline: 1,
+    padding: '4px 4px 4px 26px',
     zIndex: 2,
   },
+  typography: {
+    fontWeight: 'bold'
+  }
 });

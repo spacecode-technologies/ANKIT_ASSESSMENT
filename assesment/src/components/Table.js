@@ -23,6 +23,7 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const useStyles = makeStyles({
+  
   table: {
     minWidth: 650,
   },
@@ -42,6 +43,7 @@ export default function BasicTable() {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;

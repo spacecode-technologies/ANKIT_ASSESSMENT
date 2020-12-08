@@ -3,7 +3,8 @@ import { Grid, InputBase, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { useInventoryPageStyles } from '../style';
 
-import Table from '../components/Table'
+// import Table from '../components/Table'
+import Table2 from '../components/Table2';
 
 const InventoryView = () => {
   const classes = useInventoryPageStyles();
@@ -28,7 +29,7 @@ const InventoryView = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Table />
+      <Table2 />
     </>
   );
 };

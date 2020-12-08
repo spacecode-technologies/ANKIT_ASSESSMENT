@@ -24,7 +24,7 @@ const LoginView = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState('32264841');
+  const [username, setUsername] = useState('5252');
   const [password, setPassword] = useState('admin');
   const [showPassword, setPasswordVisibility] = useState(false);
 

@@ -18,6 +18,30 @@ const theme = createMuiTheme({
       border: '1px solid #e6e6e6',
     },
   },
+  overrides: {
+    // MuiListItem: {
+    //   root: {
+    //     '&.Mui-selected': {
+    //       color: '#000',
+    //       backgroundColor: '#575757',
+    //       '&:hover': {
+    //         backgroundColor: '#979797',
+    //       },
+    //     },
+        
+    //   },
+    // },
+    MuiListItemIcon: {
+      root: {
+        color: '#000',
+      },
+    },
+    MuiList: {
+      padding: {
+        paddingTop: '0px',
+      },
+    },
+  },
 });
 
 export default theme;

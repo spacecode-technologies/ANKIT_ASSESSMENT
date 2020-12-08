@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,6 +17,9 @@ import LineStyleIcon from '@material-ui/icons/LineStyle';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import PaletteIcon from '@material-ui/icons/Palette';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import { useSidebarStyles } from '../style';
 import logo2 from '../images/logo2.png';
@@ -25,10 +28,11 @@ const DashboardLayout = () => {
   const classes = useSidebarStyles();
   const navigate = useNavigate();
   const location = useLocation();
-  const [open, setOpen] = React.useState(false);
-  const [path, setPath] = React.useState('');
-  const [title, setTitle] = React.useState('Dashboard');
-
+  const [open, setOpen] = useState(false);
+  const [path, setPath] = useState('');
+  const [title, setTitle] = useState('Dashboard');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [color, setColor] = useState('#000');
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -36,6 +40,15 @@ const DashboardLayout = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const options = [
     {
       name: 'Dashboard',
@@ -91,9 +104,47 @@ const DashboardLayout = () => {
     return route === path;
   };
 
+  const colors = [
+    {
+      class: classes.red,
+      onClick: () => {
+        handleClose();
+        setColor(classes.red);
+      },
+    },
+    {
+      class: classes.green,
+      onClick: () => {
+        handleClose();
+        setColor(classes.green);
+      },
+    },
+    {
+      class: classes.pink,
+      onClick: () => {
+        handleClose();
+        setColor(classes.pink);
+      },
+    },
+    {
+      class: classes.indigo,
+      onClick: () => {
+        handleClose();
+        setColor(classes.indigo);
+      },
+    },
+    {
+      class: classes.purple,
+      onClick: () => {
+        handleClose();
+        setColor(classes.purple);
+      },
+    },
+  ];
+
   const drawer = (
     <>
-      <div className={classes.toolbar} style={{ backgroundColor: '#9A1752' }}>
+      <div className={classes.toolbar} style={{ backgroundColor: '#a31545' }}>
         <img
           src={logo2}
           alt='logo'
@@ -115,11 +166,33 @@ const DashboardLayout = () => {
                 selected: classes.listItemSelected,
                 button: classes.listItemButton,
               }}>
-              <ListItemIcon>{icon}</ListItemIcon>
+              <ListItemIcon className={classes.listIcons}>{icon}</ListItemIcon>
               <ListItemText primary={name} />
             </ListItem>
           );
         })}
+        <ListItem
+          aria-controls='simple-menu'
+          aria-haspopup='true'
+          onClick={handleClick}>
+          <ListItemIcon className={classes.listIcons}>
+            <PaletteIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Color Pallete'} />
+        </ListItem>
+
+        <Menu
+          id='simple-menu'
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}>
+          {colors.map((clr) => (
+            <MenuItem onClick={clr.onClick}>
+              <span className={clr.class}></span>
+            </MenuItem>
+          ))}
+        </Menu>
       </List>
     </>
   );

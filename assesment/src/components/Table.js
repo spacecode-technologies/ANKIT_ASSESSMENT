@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { listProducts } from '../actions/productActions';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -6,11 +9,18 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableFooter from '@material-ui/core/TableFooter';
+import TablePagination from '@material-ui/core/TablePagination';
+import IconButton from '@material-ui/core/IconButton';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import LastPageIcon from '@material-ui/icons/LastPage';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Moment from 'react-moment';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import data from '../data.json';
 
 const useStyles = makeStyles({
   table: {
@@ -30,7 +40,26 @@ const useStyles = makeStyles({
 
 export default function BasicTable() {
   const classes = useStyles();
-  const rows = data.data_array;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+
+  if (!loading) {
+    console.log(products);
+  }
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(listProducts());
+    } else {
+      navigate('/login');
+    }
+  }, [dispatch, navigate, userInfo]);
 
   return (
     <TableContainer component={Paper}>
@@ -70,30 +99,34 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.design_code}>
-              <TableCell align='left'>{row.sku_number}</TableCell>
-              <TableCell align='left'>{row.design_code}</TableCell>
-              {row.metal_type.length === 0 ? (
-                <TableCell align='left'> - </TableCell>
-              ) : (
-                <TableCell align='left'>{row.metal_type}</TableCell>
-              )}
+          {loading ? (
+            <CircularProgress disableShrink />
+          ) : (
+            products.map((row) => (
+              <TableRow key={row.design_code}>
+                <TableCell align='left'>{row.sku_number}</TableCell>
+                <TableCell align='left'>{row.design_code}</TableCell>
+                {row.metal_type.length === 0 ? (
+                  <TableCell align='left'> - </TableCell>
+                ) : (
+                  <TableCell align='left'>{row.metal_type}</TableCell>
+                )}
 
-              <TableCell align='left'>{row.design_category}</TableCell>
-              <TableCell align='left'>{row.diamond_weight}</TableCell>
-              <TableCell align='left'>{row.net_weight}</TableCell>
-              <TableCell align='left'>{row.sales_value}</TableCell>
-              <TableCell align='left'>{row.sku_quantity}</TableCell>
-              <TableCell align='left'>
-                <Moment format='DD-MM-YYYY'>{row.createdAt}</Moment>
-              </TableCell>
-              <TableCell align='left'>
-                <VisibilityIcon className={classes.iconColor} />{' '}
-                <PictureAsPdfIcon className={classes.iconColor} />
-              </TableCell>
-            </TableRow>
-          ))}
+                <TableCell align='left'>{row.design_category}</TableCell>
+                <TableCell align='left'>{row.diamond_weight}</TableCell>
+                <TableCell align='left'>{row.net_weight}</TableCell>
+                <TableCell align='left'>{row.sales_value}</TableCell>
+                <TableCell align='left'>{row.sku_quantity}</TableCell>
+                <TableCell align='left'>
+                  <Moment format='DD-MM-YYYY'>{row.createdAt}</Moment>
+                </TableCell>
+                <TableCell align='left'>
+                  <VisibilityIcon className={classes.iconColor} />{' '}
+                  <PictureAsPdfIcon className={classes.iconColor} />
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </TableContainer>

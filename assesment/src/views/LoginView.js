@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLoginPageStyles } from '../style';
 import {
   Typography,
@@ -8,36 +9,47 @@ import {
   Checkbox,
 } from '@material-ui/core';
 import { Card, Button } from '@material-ui/core';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import logo from '../images/logo.png';
-import { useUserDispatch, loginUser } from '../context/UserContext';
+import { login } from '../actions/userActions';
 
 const LoginView = () => {
   const classes = useLoginPageStyles();
-  const userDispatch = useUserDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-  const [username, setEmail] = useState('32264841');
+  const [username, setUsername] = useState('32264841');
   const [password, setPassword] = useState('admin');
-
   const [showPassword, setPasswordVisibility] = useState(false);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+  const redirect = location.search ? location.search.split('=')[1] : '/dashboard';
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, userInfo, redirect]);
 
   function togglePasswordVisibility() {
     setPasswordVisibility((prev) => !prev);
   }
   function handleEmailChange(e) {
-    setEmail(e.target.value);
+    setUsername(e.target.value);
   }
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
-  function handleSubmit() {
-    loginUser(userDispatch, username, password, navigate);
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(login(username, password));
   }
   return (
     <>

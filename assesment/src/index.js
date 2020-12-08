@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
 import theme from './theme';
 import App from './App';
-import { UserProvider } from './context/UserContext';
+import store from './store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <App />
         </MuiThemeProvider>
       </BrowserRouter>
-    </UserProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

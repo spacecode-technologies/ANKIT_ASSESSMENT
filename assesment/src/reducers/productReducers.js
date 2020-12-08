@@ -13,8 +13,8 @@ export const productListReducer = (state = { products: [] }, action) => {
         loading: false,
         products: action.payload.data_array,
         pages: action.payload.data.totalPage,
-        page: action.payload.data.currentPage,
-        nextPage: action.payload.data.nextPage,
+        currentPage: action.payload.data.currentPage,
+        nextPages: action.payload.data.nextPage,
         totalSKUs: action.payload.data.totalSku,
       };
     case PRODUCT_LIST_FAIL:

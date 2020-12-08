@@ -39,6 +39,14 @@ export const useSidebarStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  paper: {
+    position: 'absolute',
+    width: 400,
+    // backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     backgroundColor: '#ffffff',
@@ -105,9 +113,11 @@ export const useSidebarStyles = makeStyles((theme) => ({
     color: '#000',
   },
   menuIcon: {
-    color: '#000',
+    color: '#a31545',
   },
   listItemSelected: {
+    color: '#a31545 !important',
+    backgroundColor: '#FDA7DF !important',
     '& span': {
       fontWeight: '600 !important',
     },
@@ -115,6 +125,41 @@ export const useSidebarStyles = makeStyles((theme) => ({
   listItemButton: {
     paddingTop: '10px !important',
     paddingBottom: '10px !important',
+    // color: '#f44336 !important',
+  },
+  listIcons: {
+    marginLeft: 6,
+    color: '#a31545',
+  },
+  red: {
+    backgroundColor: '#f44336',
+    borderRadius: '50%',
+    height: '1rem',
+    width: '1rem',
+  },
+  green: {
+    backgroundColor: '#4caf50',
+    borderRadius: '50%',
+    height: '1rem',
+    width: '1rem',
+  },
+  pink: {
+    backgroundColor: '#c60055',
+    borderRadius: '50%',
+    height: '1rem',
+    width: '1rem',
+  },
+  indigo: {
+    backgroundColor: '#3f51b5',
+    borderRadius: '50%',
+    height: '1rem',
+    width: '1rem',
+  },
+  purple: {
+    backgroundColor: '#9c27b0',
+    borderRadius: '50%',
+    height: '1rem',
+    width: '1rem',
   },
 }));
 

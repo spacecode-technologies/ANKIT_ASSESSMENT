@@ -6,7 +6,10 @@ import {
 } from '../constants/productConstants';
 import { logout } from './userActions';
 
-export const listProducts = () => async (dispatch, getState) => {
+export const listProducts = (pageNumber, limit) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
@@ -20,7 +23,7 @@ export const listProducts = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
-      `https://d.jeweltrace.in/sku?id=5cfe1974a24ac0157013f843&rootInfo=company&page_no=0&limit=10`,
+      `https://d.jeweltrace.in/sku?id=5cfe1974a24ac0157013f843&rootInfo=company&page_no=${pageNumber}&limit=${limit}`,
       config
     );
     dispatch({

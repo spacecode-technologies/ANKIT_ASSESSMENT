@@ -35,6 +35,7 @@ export const useLoginPageStyles = makeStyles({
   },
 });
 const drawerWidth = 240;
+
 export const useSidebarStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -47,14 +48,7 @@ export const useSidebarStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: '#ffffff',
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
+
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -105,58 +99,58 @@ export const useSidebarStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   typography: {
-    color: '#000',
+    color: '#ffff',
     fontWeight: 500,
   },
   link: {
     textDecoration: 'none',
     color: '#000',
   },
-  menuIcon: {
-    color: '#a31545',
-  },
+
   listItemSelected: {
-    color: '#a31545 !important',
-    backgroundColor: '#FDA7DF !important',
-    '& span': {
-      fontWeight: '600 !important',
+    backgroundColor: (props) => props.color,
+    '&:hover': {
+      backgroundColor: (props) => props.color,
     },
   },
   listItemButton: {
     paddingTop: '10px !important',
     paddingBottom: '10px !important',
-    // color: '#f44336 !important',
+    color: (props) => props.color,
   },
   listIcons: {
-    marginLeft: 6,
-    color: '#a31545',
+    color: (props) => props.color,
   },
+  menuIcon:{
+    color: '#fff'
+  },
+
   red: {
-    backgroundColor: '#f44336',
+    backgroundColor: '#c0392b',
     borderRadius: '50%',
     height: '1rem',
     width: '1rem',
   },
   green: {
-    backgroundColor: '#4caf50',
+    backgroundColor: '#27ae60',
     borderRadius: '50%',
     height: '1rem',
     width: '1rem',
   },
   pink: {
-    backgroundColor: '#c60055',
+    backgroundColor: '#34495e',
     borderRadius: '50%',
     height: '1rem',
     width: '1rem',
   },
   indigo: {
-    backgroundColor: '#3f51b5',
+    backgroundColor: '#2980b9',
     borderRadius: '50%',
     height: '1rem',
     width: '1rem',
   },
   purple: {
-    backgroundColor: '#9c27b0',
+    backgroundColor: '#8e44ad',
     borderRadius: '50%',
     height: '1rem',
     width: '1rem',
@@ -178,3 +172,4 @@ export const useInventoryPageStyles = makeStyles({
     fontWeight: 'bold'
   }
 });
+

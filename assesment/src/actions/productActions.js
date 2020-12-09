@@ -11,7 +11,7 @@ export const listProducts = (pageNumber, limit) => async (
   getState
 ) => {
   try {
-    dispatch({ type: PRODUCT_LIST_REQUEST });
+    // dispatch({ type: PRODUCT_LIST_REQUEST });
 
     const {
       userLogin: { userInfo },

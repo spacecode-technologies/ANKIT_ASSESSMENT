@@ -3,12 +3,8 @@ import clsx from 'clsx';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -20,19 +16,66 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import PaletteIcon from '@material-ui/icons/Palette';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/styles';
 
 import { useSidebarStyles } from '../style';
+import MainToolbar from '../components/MainToolbar';
 import logo2 from '../images/logo2.png';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // color: '#000',
+    backgroundColor: (props) => props.color,
+    '&:hover': {
+      backgroundColor: (props) => props.color,
+    },
+
+    '& span': {
+      fontWeight: '600 !important',
+    },
+   
+  },
+ 
+  listItemButton: {
+    marginLeft: 6,
+    color: '#f44336 !important',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: (props) => props.color,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  menuBar: {
+    color: '#000',
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+}));
+
 const DashboardLayout = () => {
-  const classes = useSidebarStyles();
   const navigate = useNavigate();
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [path, setPath] = useState('');
   const [title, setTitle] = useState('Dashboard');
   const [anchorEl, setAnchorEl] = useState(null);
-  const [color, setColor] = useState('#000');
+  const [color, setColor] = useState('#c60055 ');
+  const classes = useSidebarStyles({color: `${color}`});
+  const classes2 = useStyles({
+    color: `${color}`,
+    hover: `#000`,
+    iconColor: '#c60055',
+  });
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -109,42 +152,42 @@ const DashboardLayout = () => {
       class: classes.red,
       onClick: () => {
         handleClose();
-        setColor(classes.red);
+        setColor('#c0392b');
       },
     },
     {
       class: classes.green,
       onClick: () => {
         handleClose();
-        setColor(classes.green);
+        setColor('#27ae60');
       },
     },
     {
       class: classes.pink,
       onClick: () => {
         handleClose();
-        setColor(classes.pink);
+        setColor('#34495e');
       },
     },
     {
       class: classes.indigo,
       onClick: () => {
         handleClose();
-        setColor(classes.indigo);
+        setColor('#2980b9');
       },
     },
     {
       class: classes.purple,
       onClick: () => {
         handleClose();
-        setColor(classes.purple);
+        setColor('#8e44ad');
       },
     },
   ];
 
   const drawer = (
     <>
-      <div className={classes.toolbar} style={{ backgroundColor: '#a31545' }}>
+      <div className={classes.toolbar} style={{ backgroundColor: `#fff` }}>
         <img
           src={logo2}
           alt='logo'
@@ -152,7 +195,6 @@ const DashboardLayout = () => {
           onClick={handleDrawerClose}
         />
       </div>
-      <Divider />
       <List>
         {options.map((option, index) => {
           const { icon, name, onClick } = option;
@@ -178,7 +220,6 @@ const DashboardLayout = () => {
           <ListItemIcon className={classes.listIcons}>
             <PaletteIcon />
           </ListItemIcon>
-          <ListItemText primary={'Color Pallete'} />
         </ListItem>
 
         <Menu
@@ -201,13 +242,14 @@ const DashboardLayout = () => {
       <div className={classes.root}>
         <AppBar
           position='fixed'
-          className={clsx(classes.appBar, {
+          className={clsx(classes2.appBar, {
             [classes.appBarShift]: open,
           })}>
           <MainToolbar
             title={title}
             open={open}
             handleDrawerOpen={handleDrawerOpen}
+            classes2={classes2.menuBar}
           />
         </AppBar>
         <Drawer
@@ -233,24 +275,5 @@ const DashboardLayout = () => {
     </>
   );
 };
-const MainToolbar = ({ title, handleDrawerOpen, open }) => {
-  const classes = useSidebarStyles();
-  return (
-    <Toolbar>
-      <IconButton
-        color='inherit'
-        aria-label='open drawer'
-        onClick={handleDrawerOpen}
-        edge='start'
-        className={clsx(classes.menuButton, {
-          [classes.hide]: open,
-        })}>
-        <MenuIcon className={classes.menuIcon} />
-      </IconButton>
-      <Typography variant='h6' noWrap className={classes.typography}>
-        {title}
-      </Typography>
-    </Toolbar>
-  );
-};
+
 export default DashboardLayout;

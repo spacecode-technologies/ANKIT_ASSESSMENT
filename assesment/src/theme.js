@@ -19,23 +19,22 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
-    // MuiListItem: {
-    //   root: {
-    //     '&.Mui-selected': {
-    //       color: '#000',
-    //       backgroundColor: '#575757',
-    //       '&:hover': {
-    //         backgroundColor: '#979797',
-    //       },
-    //     },
-        
-    //   },
-    // },
-    MuiListItemIcon: {
+    MuiListItem: {
       root: {
-        color: '#000',
+        '&.Mui-selected': {
+          
+          backgroundColor: '#dcdde1',
+          // '&:hover': {
+          //   backgroundColor: '#979797',
+          // },
+        },
       },
     },
+    // MuiListItemIcon: {
+    //   root: {
+    //     color: '#000',
+    //   },
+    // },
     MuiList: {
       padding: {
         paddingTop: '0px',

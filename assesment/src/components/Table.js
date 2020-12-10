@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,11 +17,14 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import { Button, TableHead } from '@material-ui/core';
+import { Grid, TableHead } from '@material-ui/core';
 import Moment from 'react-moment';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { listProducts } from '../actions/productActions';
+import ProductModal from './ProductModal';
+import ProductView from '../views/ProductView';
+import PdfButton from './PdfButton';
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -111,7 +115,7 @@ const useStyles2 = makeStyles({
   },
   iconColor: {
     color: '#6F6F6F',
-    fontSize: 'medium',
+    fontSize: 'small',
   },
 });
 
@@ -146,8 +150,6 @@ function InventoryTable() {
     setRowsPerPage(parseInt(event.target.value), 10);
     setPage(0);
   };
-  
-  
 
   return (
     <TableContainer component={Paper} className={classes.container}>
@@ -201,12 +203,14 @@ function InventoryTable() {
                 <Moment format='DD-MM-YYYY'>{row.createdAt}</Moment>
               </TableCell>
               <TableCell align='left'>
-                <InfoBtn id={row.sku_number}>
-                  <VisibilityIcon className={classes.iconColor} />
-                </InfoBtn>
-                <IconButton>
-                  <PictureAsPdfIcon className={classes.iconColor} />
-                </IconButton>
+                <Grid container >
+                  <Grid item>
+                    <InfoBtn id={row.sku_number} />
+                  </Grid>
+                  <Grid item>
+                    <PdfButton id={row.sku_number} />
+                  </Grid>
+                </Grid>
               </TableCell>
             </TableRow>
           ))}
@@ -234,10 +238,10 @@ function InventoryTable() {
     </TableContainer>
   );
 }
-const InfoBtn = ({id}) => {
+const InfoBtn = ({ id }) => {
   const classes = useStyles2();
   const navigate = useNavigate();
-  function handleOnClick(){
+  function handleOnClick() {
     navigate({
       pathname: `/p/${id}`,
       state: { modal: true },
@@ -249,6 +253,24 @@ const InfoBtn = ({id}) => {
     </IconButton>
   );
 };
+// const PdfBtn = ({id}) =>{
+//   const classes = useStyles2();
+//   const navigate = useNavigate();
+//   function handleOnClick() {
+//     navigate({
+//       pathname: `/p/${id}`,
+//       state: { modal: true },
+//     });
+//   }
+//   return (
+//     <>
 
+//         <IconButton >
+//           <PictureAsPdfIcon className={classes.iconColor} />
+//         </IconButton>
+
+//     </>
+//   );
+// }
 
 export default InventoryTable;

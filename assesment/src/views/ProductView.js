@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
+
 import { useProductStyles } from '../style';
 import { listProductDetails } from '../actions/productActions';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { Box, Divider, Grid, Typography } from '@material-ui/core';
+import { Divider, Grid, Typography } from '@material-ui/core';
+
+
 
 const ProductView = ({ match }) => {
   const classes = useProductStyles();

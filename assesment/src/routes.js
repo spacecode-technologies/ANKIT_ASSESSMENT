@@ -8,6 +8,8 @@ import ReportsView from './views/ReportsView';
 import LoginView from './views/LoginView';
 import DashboardLayout from './layouts/DashboardLayout';
 import MainLayout from './layouts/MainLayout';
+import ProductView from './views/ProductView';
+import ProductModal from './components/ProductModal';
 
 const routes = [
   {
@@ -16,6 +18,7 @@ const routes = [
     children: [
       { path: 'dashboard', element: <DashboardView /> },
       { path: 'inventory', element: <InventoryView /> },
+      { path: 'p/:id', element: <ProductModal /> },
       { path: 'transactions', element: <TransactionsView /> },
       { path: 'customers', element: <CustomersView /> },
       { path: 'reports', element: <ReportsView /> },

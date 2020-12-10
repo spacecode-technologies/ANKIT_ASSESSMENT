@@ -149,6 +149,13 @@ const DashboardLayout = () => {
 
   const colors = [
     {
+      class: classes.magenta,
+      onClick: () => {
+        handleClose();
+        setColor('#c60055');
+      },
+    },
+    {
       class: classes.red,
       onClick: () => {
         handleClose();

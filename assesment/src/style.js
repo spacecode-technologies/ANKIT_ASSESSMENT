@@ -114,6 +114,8 @@ export const useSidebarStyles = makeStyles((theme) => ({
     },
   },
   listItemButton: {
+    fontWeight: '600',
+
     paddingTop: '10px !important',
     paddingBottom: '10px !important',
     color: (props) => props.color,
@@ -121,10 +123,16 @@ export const useSidebarStyles = makeStyles((theme) => ({
   listIcons: {
     color: (props) => props.color,
   },
-  menuIcon:{
-    color: '#fff'
+  menuIcon: {
+    color: '#fff',
   },
 
+  magenta: {
+    backgroundColor: '#c60055',
+    borderRadius: '50%',
+    height: '1rem',
+    width: '1rem',
+  },
   red: {
     backgroundColor: '#c0392b',
     borderRadius: '50%',
@@ -169,7 +177,83 @@ export const useInventoryPageStyles = makeStyles({
     zIndex: 2,
   },
   typography: {
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
+export const useProductStyles = makeStyles((theme) => ({
+  image: {
+    width: '70%',
+    marginLeft: '5rem',
+  },
+  link: {
+    // textDecoration: 'none',
+    // marginTop: '1rem',
+    paddingTop: '1rem',
+    marginLeft: '1rem',
+    color: '#C60055',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  typo: {
+    marginLeft: '1rem',
+    color: '#484848',
+    marginTop: theme.spacing(0.5),
+  },
+  // typography: {
+  //   color: '#C60055',
+  // },
 
+  container: {
+    padding: '0px 16px 8px !important',
+  },
+
+  header: {
+    width: '100%',
+    height: '80px',
+    backgroundColor: '#dcdde1',
+  },
+}));
+
+export const useDashboardPageStyles = makeStyles((theme) => ({
+  card: {
+    maxWidth: 600,
+    padding: '16px 40px',
+    marginBottom: 10,
+    boxShadow: '0px 0px 2px 2px rgba(79,79,79,0.4)',
+  },
+  typography: {
+    fontWeight: '500',
+    marginBottom: theme.spacing(2),
+  },
+  pageTitleContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing(2),
+    // marginTop: theme.spacing(0.5),
+  },
+  typo: {
+    color: theme.palette.text.hint,
+  },
+}));
+
+export const useProductModalStyles = makeStyles({
+  overlay: {
+    position: 'fixed !important',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5) !important',
+    zIndex: '1200 !important',
+    padding: '0 40px !important',
+    pointerEvents: 'auto',
+  },
+  close: {
+    padding: 12,
+    top: 0,
+    right: 0,
+    position: 'fixed',
+    zIndex: 1201,
+    cursor: 'pointer',
+  },
+});

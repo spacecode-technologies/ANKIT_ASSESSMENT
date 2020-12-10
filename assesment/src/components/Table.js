@@ -16,7 +16,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import { TableHead } from '@material-ui/core';
+import { Button, TableHead } from '@material-ui/core';
 import Moment from 'react-moment';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -113,11 +113,11 @@ const useStyles2 = makeStyles({
     color: '#6F6F6F',
     fontSize: 'medium',
   },
-  
 });
 
 function InventoryTable() {
   const classes = useStyles2();
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -125,11 +125,7 @@ function InventoryTable() {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const {
-    products,
-    pages,
-    currentPage,
-  } = productList;
+  const { products, pages, currentPage } = productList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -142,16 +138,16 @@ function InventoryTable() {
     }
   }, [dispatch, navigate, userInfo, page, rowsPerPage]);
 
-  
-
   const handleChangePage = (event, nextPage) => {
     setPage(nextPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value),10);
+    setRowsPerPage(parseInt(event.target.value), 10);
     setPage(0);
   };
+  
+  
 
   return (
     <TableContainer component={Paper} className={classes.container}>
@@ -191,27 +187,29 @@ function InventoryTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {
-            products.map((row) => (
-              <TableRow key={row.design_code}>
-                <TableCell align='left'>{row.sku_number}</TableCell>
-                <TableCell align='left'>{row.design_code}</TableCell>
-                <TableCell align='left'>{row.metal_type}</TableCell>
-                <TableCell align='left'>{row.design_category}</TableCell>
-                <TableCell align='left'>{row.diamond_weight}</TableCell>
-                <TableCell align='left'>{row.net_weight}</TableCell>
-                <TableCell align='left'>{row.sales_value}</TableCell>
-                <TableCell align='left'>{row.sku_quantity}</TableCell>
-                <TableCell align='left'>
-                  <Moment format='DD-MM-YYYY'>{row.createdAt}</Moment>
-                </TableCell>
-                <TableCell align='left'>
-                  <VisibilityIcon className={classes.iconColor} />{' '}
+          {products.map((row) => (
+            <TableRow key={row.design_code}>
+              <TableCell align='left'>{row.sku_number}</TableCell>
+              <TableCell align='left'>{row.design_code}</TableCell>
+              <TableCell align='left'>{row.metal_type}</TableCell>
+              <TableCell align='left'>{row.design_category}</TableCell>
+              <TableCell align='left'>{row.diamond_weight}</TableCell>
+              <TableCell align='left'>{row.net_weight}</TableCell>
+              <TableCell align='left'>{row.sales_value}</TableCell>
+              <TableCell align='left'>{row.sku_quantity}</TableCell>
+              <TableCell align='left'>
+                <Moment format='DD-MM-YYYY'>{row.createdAt}</Moment>
+              </TableCell>
+              <TableCell align='left'>
+                <InfoBtn id={row.sku_number}>
+                  <VisibilityIcon className={classes.iconColor} />
+                </InfoBtn>
+                <IconButton>
                   <PictureAsPdfIcon className={classes.iconColor} />
-                </TableCell>
-              </TableRow>
-            ))
-          }
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
 
         <TableFooter>
@@ -236,4 +234,21 @@ function InventoryTable() {
     </TableContainer>
   );
 }
+const InfoBtn = ({id}) => {
+  const classes = useStyles2();
+  const navigate = useNavigate();
+  function handleOnClick(){
+    navigate({
+      pathname: `/p/${id}`,
+      state: { modal: true },
+    });
+  }
+  return (
+    <IconButton onClick={handleOnClick}>
+      <VisibilityIcon className={classes.iconColor} />
+    </IconButton>
+  );
+};
+
+
 export default InventoryTable;

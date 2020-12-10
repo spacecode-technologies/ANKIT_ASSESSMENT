@@ -6,6 +6,7 @@ import { useSidebarStyles } from '../style';
 
 const MainToolbar = ({ title, handleDrawerOpen, open,classes2 }) => {
   const classes = useSidebarStyles();
+
   return (
     <Toolbar>
       <IconButton

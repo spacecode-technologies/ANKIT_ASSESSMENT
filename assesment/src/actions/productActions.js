@@ -44,7 +44,7 @@ export const listProducts = (pageNumber, limit) => async (
 };
 export const listProductDetails = (id) => async (dispatch, getState) => {
   try {
-    // dispatch({ type: PRODUCT_DETAILS_REQUEST });
+    dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const {
       userLogin: { userInfo },
     } = getState();

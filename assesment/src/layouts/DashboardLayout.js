@@ -69,6 +69,7 @@ const DashboardLayout = () => {
   const [title, setTitle] = useState('Dashboard');
   const [anchorEl, setAnchorEl] = useState(null);
   const [color, setColor] = useState('#c60055 ');
+  
   const classes = useSidebarStyles({color: `${color}`});
   const classes2 = useStyles({
     color: `${color}`,
